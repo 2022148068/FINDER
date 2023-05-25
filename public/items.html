@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>분실물</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="index.html"><div class='greet' href="">찾아봐요,<br/>다같이.</div></a>
+        <h3 id="where">ㅇㅇ구 분실물</h3>
+    </header>
+    <main class="itemContainer"></main>
+    <footer>
+        <div class='Qnew'>내 분실물이 없나요?</div>
+        <div class='goSignUp'><a href='signup.html' style="text-decoration: underline;">분실물 등록하기</a></div>
+    </footer>
+    <script>
+        var urlPara = new URLSearchParams(window.location.search);
+        var cplace = urlPara.get('place');
+        var ctype = urlPara.get('type');
+        var cprice = urlPara.get('price');
+        let where = document.getElementById("where").innerHTML = cplace + "분실물";
+        fetch("product.json")
+        .then(response => {
+            if (!response.ok) {throw new Error(`HTTP error: ${response.status}`);}
+            return response.json();
+        })
+        .then(json => init(json))
+        .catch(error => console.error(`Fetch problem: ${error.message}`));
+        function init(items) {
+            // define Variables
+            const main = document.querySelector("main");
+            let typeGroup, placeGroup, finalGroup;
+            // setup
+            typeGroup = items.filter(obj => obj.type === ctype);
+            placeGroup = typeGroup.filter(obj => obj.place === cplace);
+            finalGroup = placeGroup.filter(obj => obj.type === ctype);
+            update1();
+            window.onscroll = function(e) {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - document.querySelector("footer").offsetHeight) {
+                    let eleCnt = main.childElementCount;
+                    let eleNew = finalGroup.slice(eleCnt);
+                    for (const i in eleNew) {
+                        if (i < 2) {builditem(eleNew[i]);}
+                        else break;
+                    }
+                }
+            }
+            // fine functions
+            function update1() {
+                if (finalGroup.length === 0) { // if no data exist
+                    const par = document.createElement("p");
+                    par.textContent = "분실물이 접수되지 않은 것 같습니다.";
+                    main.appendChild(par);
+                }
+                else { //print
+                    for (const i in finalGroup) {
+                        if (i < 6) {builditem(finalGroup[i]);}
+                        else break;
+                    }
+                }
+            }
+            function builditem(item) { //
+                const fullCon = document.createElement("div");
+                fullCon.setAttribute("class", /**/);
+            }
+        }
+    </script>
+</body>
+</html>

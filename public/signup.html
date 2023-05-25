@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>회원가입</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+        <script>
+            window.Kakao.init("015f7fcf44db3d7560e8b9ba7ff20a26");
+            function kakaoLogin() {
+                window.Kakao.Auth.login({
+                    scope:"profile_nickname, profile_image, account_email",
+                    success: function(authObj) {
+                        console.log(authObj);
+                        window.Kakao.API.request({
+                            url:"/v2/user/me",
+                            success: function res() {
+                                const kakao_account = res.kakao_account;
+                                console.log(kakao_account);
+                            }
+                        });
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <a href="index.html"><div class='greet' href="">찾아봐요,<br/>다같이.</div></a>
+        <form method="post" action="/signup">
+
+        </form>
+        <a href="javascript:kakaoLogin();"><img src="/imgs/kakao_login_medium_narrow.png" id="loginBar" style="cursor: pointer;"></a>
+    </body>
+</html>

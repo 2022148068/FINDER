@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>찾아줄래요</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script>
+            function loadImage(event) {
+                const input = event.target;
+                if (input.files.length !== 0) {document.getElementById("blank").setAttribute("style", "display:block;");}
+                for (let i = 0; i < input.files.length; i++) {
+                    let reader = new FileReader();
+                    reader.onload = function() {
+                        let img = document.createElement("img");
+                        img.src = reader.result;
+                        img.setAttribute("style", "width:100px; margin:5px;");
+                        document.getElementById("blank").appendChild(img);
+                    }
+                    reader.readAsDataURL(input.files[i]);
+                }   
+            }
+        </script>
+    </head>
+    <body>
+        <a href="index.html"><div class='greet' href="">찾아봐요,<br/>다같이.</div></a>
+        <h3>찾아줄래요</h3>
+        <form method='post' action='등록할서버'>
+            <input type='select' placeholder='습득 지역구' id='type'/>
+            <input type='select' placeholder='분실물 유형' id='type'/>
+            <input type='select' placeholder='전달 방식' id='price'/>
+            <label class="input_file">사진 추가하기<input type='file' multiple onchange="loadImage(event)"/></label>
+            <div id="blank" style="display:none;"></div>
+            <div class='btnwrap'>
+                <label class='submitwrap'>등록<input type='submit' class='submit'/></label>
+                <a href='index.html'><div class='cancel'>취소</div></a>
+            </div>
+        </form>
+    </body>
+</html>
