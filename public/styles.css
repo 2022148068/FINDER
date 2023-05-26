@@ -1,38 +1,18 @@
-@font-face {
-    font-family: AppleSDGothicNeoB;
-    src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoB.ttf');
-}
-@font-face {
-    font-family: AppleSDGothicNeoEB;
-    src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoEB.ttf');
-}
-@font-face {
-    font-family: AppleSDGothicNeoH;
-    src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoH.ttf');
-}
-@font-face {
-    font-family: AppleSDGothicNeoL;
-    src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoL.ttf');
-}
-@font-face {
-    font-family: AppleSDGothicNeoM;
-    src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoM.ttf');
-}
-@font-face {
-    font-family: AppleSDGothicNeoR;
-    src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoR.ttf');
-}
-@font-face {
-    font-family: AppleSDGothicNeoSB;
-    src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoSB.ttf');
-}
-@font-face {
-    font-family: AppleSDGothicNeoT;
-    src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoT.ttf');
-}
-@font-face {
-    font-family: AppleSDGothicNeoUL;
-    src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoUL.ttf');
+@font-face {font-family: AppleSDGothicNeoB;src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoB.ttf');}
+@font-face {font-family: AppleSDGothicNeoEB;src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoEB.ttf');}
+@font-face {font-family: AppleSDGothicNeoH;src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoH.ttf');}
+@font-face {font-family: AppleSDGothicNeoL;src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoL.ttf');}
+@font-face {font-family: AppleSDGothicNeoM;src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoM.ttf');}
+@font-face {font-family: AppleSDGothicNeoR;src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoR.ttf');}
+@font-face {font-family: AppleSDGothicNeoSB;src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoSB.ttf');}
+@font-face {font-family: AppleSDGothicNeoT;src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoT.ttf');}
+@font-face {font-family: AppleSDGothicNeoUL;src: url('./Apple_SDGothic_Neo/AppleSDGothicNeoUL.ttf');}
+#map {
+    width:500px;
+    height:400px;
+    border-radius:20px;
+    border-color:rgb(36, 112, 233);
+    border-style:solid;
 }
 input::placeholder {
     color:rgb(181, 181, 181);
@@ -166,7 +146,12 @@ form {
     cursor: pointer;
 }
 .itemContainer {
+    margin:15px;
     display:flex;
+    border-style:solid;
+    border-color:rgb(36, 112, 233);
+    border-radius: 20px;
+    flex-direction: column;
 }
 .itemContainer p {
     width:100%;
@@ -179,6 +164,13 @@ form {
     border-radius:20px;
     width:70%;
 }
-@media screen and (max-width: 500px) {
-
+.imgCon {
+    padding:5px;
+}
+.fullCon {
+    margin:5px;
+}
+.itemInfo {
+    width:100%;
+    font-family: AppleSDGothicNeoH;
 }
