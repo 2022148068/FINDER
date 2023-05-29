@@ -10,9 +10,7 @@ const sqlite = require("sqlite");
 
 app.use(express.static("public"));
 
-app.get("/tmp.html", function(req, res) {
-    res.sendFile(__dirname + "tmp.js");
-})
+
 app.get("/", function(req, res) {
     res.sendFile(__dirname + "/public/index.html");
 });
@@ -22,7 +20,9 @@ app.get("/finder.html", function(req, res) {
 app.get("/loster.html", function(req, res) {
     res.sendFile(__dirname + "/public/loster.html");
 });
-
+app.get("/complete.html", function(req, res) {
+    res.sendFile(__dirname + "/public/complete.html");
+})
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, function() {
     console.log("Server on. http://localhost:" + PORT);
