@@ -24,10 +24,10 @@
     <body>
         <a href="index.html"><div class='greet'>찾아봐요,<br/>다같이.</div></a>
         <h3>찾아줄래요</h3>
-        <form method='post' action='등록할서버'>
-            <input type='select' placeholder='습득 지역구' id='type'/>
-            <input type='select' placeholder='분실물 유형' id='type'/>
-            <input type='select' placeholder='전달 방식' id='price'/>
+        <form id="myForm" method='post' action='./complete.html'>
+            <input type='text' placeholder='습득 지역구' name="place" id='place'/>
+            <input type='text' placeholder='분실물 유형' name="type" id='type'/>
+            <input type='text' placeholder='전달 방식' name="way" id='way'/>
             <label class="input_file">사진 추가하기<input type='file' multiple onchange="loadImage(event)"/></label>
             <div id="blank" style="display:none;"></div>
             <div class='btnwrap'>
@@ -36,4 +36,32 @@
             </div>
         </form>
     </body>
+    <script>
+        document.getElementById("productForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        const newObject = {
+          name: document.getElementById("place").value,
+          type: document.getElementById("type").value,
+        };
+        fetch("/add-product", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newObject)
+        })
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("서버 응답이 실패했습니다. 상태 코드: " + response.status);
+            }
+            return response.json();
+          })
+          .then(function (data) {
+            console.log("데이터가 성공적으로 서버에 추가되었습니다.", data);
+          })
+          .catch(function (error) {
+            console.error("오류 발생:", error);
+          });
+      });
+    </script>
 </html>

@@ -6,6 +6,9 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+    <a href="#">
+        <div class="float"><span>TOP</span></div>
+    </a>
     <header>
         <a href="index.html"><div class='greet'>찾아봐요,<br/>다같이.</div></a>
         <h3 id="where">ㅇㅇ구 분실물</h3>
@@ -31,6 +34,28 @@
             level: 4
         };
         const map = new kakao.maps.Map(container, options);
+        /*경찰청에서 데이터 불러오기*/
+        var request = require('request');
+
+    var url = 'http://apis.data.go.kr/1320000/LostGoodsInfoInqireService/getLostGoodsInfoAccToClAreaPd';
+    var queryParams = '?' + encodeURIComponent('serviceKey') + '=서비스키'; /* Service Key*/
+    queryParams += '&' + encodeURIComponent('START_YMD') + '=' + encodeURIComponent('20170801'); /* */
+    queryParams += '&' + encodeURIComponent('END_YMD') + '=' + encodeURIComponent('20171130'); /* */
+    queryParams += '&' + encodeURIComponent('PRDT_CL_CD_01') + '=' + encodeURIComponent('PRA000'); /* */
+    queryParams += '&' + encodeURIComponent('PRDT_CL_CD_02') + '=' + encodeURIComponent('PRA300'); /* */
+    queryParams += '&' + encodeURIComponent('LST_LCT_CD') + '=' + encodeURIComponent('LCA000'); /* */
+    queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /* */
+    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /* */
+
+    request({
+        url: url + queryParams,
+        method: 'GET'
+    }, function (error, response, body) {
+        //console.log('Status', response.statusCode);
+        //console.log('Headers', JSON.stringify(response.headers));
+        //console.log('Reponse received', body);
+    });
+
         /* ajax fetch문으로 데이터 불러옴 이거 활용해서 카카오맵에 마커 ㅈㄴ게 박을거임 */
         fetch("product.json")
         .then(response => {
