@@ -29,8 +29,20 @@
         let where = document.getElementById("where").innerHTML = cplace + "분실물";
         /*연세대 중심설정하고 지도생성 ㅇㅇ*/
         const container = document.getElementById('map');
+        pxx = 37.56376886760046;
+        pyy = 126.93776471069354;
+        if (cplace === "연세대학교") {
+            pxx = 37.56376886760046;
+            pyy = 126.93776471069354;
+        } else if (cplace === "천안시청") {
+            pxx = 36.81503182656032;
+            pyy = 127.11392312655443;
+        } else if (cplace === "강남구청역") {
+            pxx = 37.51729997754024;
+            pyy = 127.04127592654241;
+        }
         let options = { 
-            center: new kakao.maps.LatLng(37.56376886760046, 126.93776471069354), 
+            center: new kakao.maps.LatLng(pxx, pyy),
             level: 4
         };
         const map = new kakao.maps.Map(container, options);
@@ -73,16 +85,6 @@
             placeGroup = typeGroup.filter(obj => obj.place === cplace);
             finalGroup = placeGroup.filter(obj => obj.type === ctype);
             update1();
-            window.onscroll = function(e) {
-                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - document.querySelector("footer").offsetHeight) {
-                    let eleCnt = main.childElementCount;
-                    let eleNew = finalGroup.slice(eleCnt);
-                    for (const i in eleNew) {
-                        if (i < 2) {builditem(eleNew[i]);}
-                        else break;
-                    }
-                }
-            }
             // fine functions
             function update1() {
                 if (finalGroup.length === 0) { // if no data exist
@@ -91,10 +93,7 @@
                     main.appendChild(par);
                 }
                 else { //print
-                    for (const i in finalGroup) {
-                        if (i < 6) {builditem(finalGroup[i]);}
-                        else break;
-                    }
+                    for (const i in finalGroup) {builditem(finalGroup[i]);}
                 }
             }
             function builditem(item) { // 지도에 먼저 박고, 리스트에 넣을거임 ㅇ
@@ -105,15 +104,16 @@
                 var marker = new kakao.maps.Marker({
                     map: map,
                     position: markerPosi,
-                    title: item.title, // hover하면 표시
+                    title: item.type, // hover하면 표시
                     image: markerImg
                 });
+                marker.setMap(map);
                 const fullCon = document.createElement("div");
                 const imgCon = document.createElement("div");
                 fullCon.setAttribute("style", "fullCon");
                 const info = document.createElement("div");
                 info.setAttribute("style", "itemInfo")
-                info.innerText = item.title;
+                info.innerText = item.type;
                 for (let i = 0; i < item.img.length; i++) {
                     let imggg = document.createElement("img");
                     imggg.src = item.img[i];

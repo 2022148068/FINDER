@@ -21,14 +21,14 @@
                         });
                     }
                 });
+                window.location.replace("index.html");
+                // 이거 대신에 요 signup.html을 nodejs에 때려박아서 저 위에있는 kakao_account를 index.html 처음이신가요 부분에 넣을 수 있나
+                // 그거생각중            
             }
         </script>
     </head>
     <body>
         <a href="index.html"><div class='greet'>찾아봐요,<br/>다같이.</div></a>
-        <form method="post" action="/signup">
-
-        </form>
         <a href="javascript:kakaoLogin();"><img src="/imgs/kakao_login_medium_narrow.png" id="loginBar" style="cursor: pointer;"></a>
     </body>
 </html>

@@ -24,11 +24,11 @@
     <body>
         <a href="index.html"><div class='greet'>찾아봐요,<br/>다같이.</div></a>
         <h3>찾아줄래요</h3>
-        <form id="myForm" method='post' action='./complete.html'>
-            <input type='text' placeholder='습득 지역구' name="place" id='place'/>
-            <input type='text' placeholder='분실물 유형' name="type" id='type'/>
-            <input type='text' placeholder='전달 방식' name="way" id='way'/>
-            <label class="input_file">사진 추가하기<input type='file' multiple onchange="loadImage(event)"/></label>
+        <form id="myForm" method='post' action='/upload'>
+            <input type='text' placeholder='습득 지역구' name="place" id='place' required/>
+            <input type='text' placeholder='분실물 유형' name="type" id='type' required/>
+            <input type='text' placeholder='전달 방식' name="way" id='way' required/>
+            <label class="input_file">사진 추가하기<input type='file' name="img" required multiple onchange="loadImage(event)"/></label>
             <div id="blank" style="display:none;"></div>
             <div class='btnwrap'>
                 <label class='submitwrap'>등록<input type='submit' class='submit'/></label>
